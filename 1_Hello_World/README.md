@@ -2,11 +2,10 @@
 
 #### Objectives 
 
-1. Get acquainted with the process of compiling bare metal code with gcc
-2. Have a first look and feel at assembly
+1. Get familiar with the process of compiling bare metal code with gcc
 3. Get familiar with how we'll be visualizing tests in the screen
-
-**NOTE:** Don't worry too much about all the additional code (uart.c, uart.h, main.c, gpio.h, etc). This will be covered later in detail. For now it's used for getting an output to the screen.
+4. Learn the process of testing our code on QEMU
+4. Learn the process of testing our code on the Pi
 
 #### Instructions 
 
@@ -18,9 +17,9 @@ for
 ```
 mov r0, r0, 7
 ```
-and answer: 
-- What changed? 
-- Why did it change? Hint: have a look at `main.c`
+that's it.
+
+**NOTE:** Don't worry too much about all the additional code (uart.c, uart.h, main.c, gpio.h, etc). This will be covered later in detail. For now it's used for getting an output to the screen.
 
 In your favourite browser look for answers to the following questions:
 
@@ -33,17 +32,18 @@ In your favourite browser look for answers to the following questions:
 ### Resources on the WEB
 - None
 
-#### Run lab in QEMU
+#### Build Binary
 
 ```
 make
-QEMU_BIN_PATH=...
-$QEMU_BIN_PATH 
+```
+
+#### Run lab in QEMU
+
+```
+./run_on_qemu.sh
 ```
 
 #### Run lab in Raspberry PI
 
-```
-make
-
-```
+missing
