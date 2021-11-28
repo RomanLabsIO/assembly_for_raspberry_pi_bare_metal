@@ -39,7 +39,8 @@ make
 ```
 
 #### QEMU output
-![qemu_output](images/qemu_output.png)
+<img src="https://github.com/rromanotero/assembly_for_reaspberry_pi_bare_metal/blob/master/1_Hello_World/images/qemu_output.png" width="620"/>
+
 
 #### Raspberry PI Output
 missing
