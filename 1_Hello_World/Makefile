@@ -18,7 +18,7 @@ OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-CFLAGS = $(INC_FLAGS) -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles
+CFLAGS = $(INC_FLAGS) -mcpu=cortex-a72 -O0 -ffreestanding -nostdlib
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(LD) $(OBJS) -T linker.ld -o $(OUTPUT_DIR)/$(ELF)

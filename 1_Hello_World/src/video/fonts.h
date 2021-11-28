@@ -19,39 +19,19 @@
 *
 **/
 
-.section ".boot"
-.align 2
+#ifndef FONTS_H
+#define FONTS_H
 
-.global _boot_entry_point
-_boot_entry_point:
-    // Halt cores from 1 to 3
-    // Only core 0 runs
-    //
-    //  MPIDR_EL1 (Multiprocessor Affinity Register)
-    //    - It's a 64-bit register.
-    //    - It provides "provides an additional PE [processing element] identification mechanism"
-    //
-    //
-    mrs   x0, mpidr_el1
-    and   x0, x0, 3
-    cbnz  x0, halt            //Only core 0 will make it thru
+#include <stdbool.h>
+#include "video.h"
 
-    ldr   x0, =__stack_end    //Init stack
-    mov   sp, x0
 
-    ldr   x4, =__bss_start     // Fill BSS with Zeroes
-	ldr   x9, =__bss_end
-	mov   w5, 0
-bss_next_word:
-	cmp   x4, x9
-	bge   bss_end
-    str   w5, [x4]
-    add   x4, x4, 4
-	b bss_next_word
-bss_end:
+typedef struct{
+  uint32_t num_lines;
+  VideoLine lines[6];
+}VideoFont;
 
-    bl      main                 //Jump to main
+void fonts_init(void);
+VideoFont* fonts_char_to_font(uint8_t);
 
-halt:
-    wfe                          //Low power mode
-    b halt
+#endif
