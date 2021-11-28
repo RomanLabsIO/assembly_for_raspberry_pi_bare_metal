@@ -39,7 +39,7 @@ make
 ```
 
 #### QEMU output
-<img src="https://github.com/rromanotero/assembly_for_reaspberry_pi_bare_metal/blob/master/1_Hello_World/images/qemu_output.png" width="620"/>
+<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/qemu_output.png" width="620"/>
 
 
 #### Raspberry PI Output
