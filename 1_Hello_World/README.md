@@ -38,8 +38,8 @@ make
 ./run_on_qemu.sh
 ```
 
-#### Sample output in QEMU
-missing
+#### QEMU output
+![qemu_output](images/qemu_output.png)
 
-#### Sample output in Raspberry PI
+#### Raspberry PI Output
 missing
