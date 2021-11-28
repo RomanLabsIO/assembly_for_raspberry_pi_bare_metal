@@ -1,4 +1,11 @@
-SDCARD_DRIVE=f
+set -e
+
+if [  -z "$SDCARD_DRIVE" ]; then 
+    tput setaf 1
+    echo "Env var SDCARD_DRIVE unset. Example: SDCARD_DRIVE=f ./kernel8_to_sdcard_wsl.sh"
+    exit 1
+fi
+
 KERNEL_DIR=./output
 
 echo "Mounting $SDCARD_DRIVE drive"
