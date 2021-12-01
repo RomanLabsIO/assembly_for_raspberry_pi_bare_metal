@@ -1,4 +1,4 @@
-*/build/*
+build/*
 *.lss
 *.elf
 *.dump
