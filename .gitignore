@@ -1,5 +1,5 @@
-build/*
-*/build/*
-*.lss
-*.elf
-*.dump
+build/
+**/build/**
+**.lss
+**.elf
+**.dump
