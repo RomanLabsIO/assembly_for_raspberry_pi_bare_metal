@@ -1,6 +1,6 @@
 ### Lab 1 -  Hello World
 
-**NOTE: Don't worry too much about all the additional code (uart.c, uart.h, main.c, gpio.h, etc). This will be covered later in detail. For now these are used so we can see an output**
+**NOTE: Don't worry too much about all the additional code (uart.c, uart.h, main.c, gpio.h, etc). These are used so we can print to the screen. Everything will be covered later in detail**
 
 #### Objectives 
 
@@ -14,9 +14,13 @@ After completion of this lab, the student will be able to:
 
 #### Instructions 
 
-1. In `hello_world.s` change the line `mov r0, r0, 1` for `mov r0, r0, 7`, build the code to generate the binary `output/kernel8.img`. 
+1. Currently `hello_world.s` displays `hey` on the screen (there's no lowercase letters):
 
-2. Test `output/kernel8.img` in both QEMU and the PI. 
+<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/qemu_output.png" width="620"/>
+
+change it so it displays `hello`. 
+
+2. Generate `output/kernel8.img` and it on both QEMU and the PI. 
 
 3. In your favourite browser look for answers to the following questions:
     - What is a Makefile?
@@ -44,9 +48,9 @@ Set SDCARD_DRIVE to match your sd card drive letter (e.g. d,f,h, etc):
 SDCARD_DRIVE=f ./kernel8_to_sdcard_wsl.sh
 ```
 
-#### QEMU output
-<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/qemu_output.png" width="620"/>
+#### QEMU solution output
+missing
 
 
-#### Raspberry PI Output
+#### Raspberry PI solution Output
 missing
