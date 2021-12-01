@@ -27,7 +27,7 @@ change it so it displays `hello`.
     - What does the extension `.s` denotes?
 
 ### Resources on the WEB
-- [What is a makefile?](http://www.sis.pitt.edu/mbsclass/tutorial/advanced/makefile/whatis.htm)
+- [What is a Makefile?](http://www.sis.pitt.edu/mbsclass/tutorial/advanced/makefile/whatis.htm)
 - [Makefile origin](https://en.wikipedia.org/wiki/Make_(software)#Origin)
 - [What are .S files?](https://stackoverflow.com/questions/10285410/what-are-s-files)
 
