@@ -6,11 +6,10 @@
 
 After completion of this lab, the student will be able to:
 
-1. Describe what bare metal software is
-2. Run a makefile to compile bare metal code to produce a binary for the Raspberry Pi
-3. Test the binary produced on QEMU
-4. Test the binary produced on the PI using a serial converter
-5. Identify an assembly program when seeing one
+1. Run a makefile to compile bare metal code to produce a binary for the Raspberry Pi
+2. Test the binary produced on QEMU
+3. Test the binary produced on the PI
+4. Identify an ARM assembly file when seeing one
 
 #### Instructions 
 
