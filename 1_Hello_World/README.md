@@ -49,7 +49,7 @@ SDCARD_DRIVE=f ./kernel8_to_sdcard_wsl.sh
 ```
 
 #### QEMU solution output
-missing
+<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/qemu_solution.png" width="620"/>
 
 
 #### Raspberry PI solution Output
