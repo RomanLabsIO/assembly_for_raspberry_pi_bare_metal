@@ -27,7 +27,6 @@
  **/
 #include "io.h"
 #include "mb.h"
-#include "terminal.h"
 
 unsigned int width, height, pitch, isrgb;
 unsigned char *fb;
