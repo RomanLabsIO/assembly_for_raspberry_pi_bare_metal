@@ -41,11 +41,19 @@ make
 ./run_on_qemu.sh
 ```
 
-#### Transfer kernel9.img to sd card (Windows Subsystem For Linux)
+#### Transfer kernel8.img to sd card 
+
+**NOTE: Make sure you remove kernel7.img, kernel7l.img, and kernel.img from the sdcard**
+
+##### (Windows Subsystem For Linux)
 Set SDCARD_DRIVE to match your sd card drive letter (e.g. d,f,h, etc):
 ```
 SDCARD_DRIVE=f ./kernel8_to_sdcard_wsl.sh
 ```
+##### (Linux/MAC)
+Replace kernel8.img in the boot drive of the SD Card. See kernel8_to_sdcard_wsl.sh for reference.
+
+
 
 #### QEMU solution output
 <img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/qemu_solution.png" width="620"/>

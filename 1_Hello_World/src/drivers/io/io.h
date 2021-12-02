@@ -19,19 +19,13 @@
 *
 **/
 
-#ifndef FONTS_H
-#define FONTS_H
+/**
+ * 
+ * CC0-1.0 License
+ * https://github.com/isometimes/rpi4-osdev
+ *  
+ **/
+#define PERIPHERAL_BASE 0xFE000000
 
-#include <stdbool.h>
-#include "video.h"
-
-
-typedef struct{
-  uint32_t num_lines;
-  VideoLine lines[6];
-}VideoFont;
-
-void fonts_init(void);
-VideoFont* fonts_char_to_font(uint8_t);
-
-#endif
+void mmio_write(long reg, unsigned int val);
+unsigned int mmio_read(long reg);

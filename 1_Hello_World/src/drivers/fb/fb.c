@@ -19,97 +19,102 @@
 *
 **/
 
-/*
- * Copyright (C) 2018 bzt (bztsrc@github)
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use, copy,
- * modify, merge, publish, distribute, sublicense, and/or sell copies
- * of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
- *
- */
-#include "mbox.h"
-#include "fb.h"
-
-static unsigned int width, height, pitch;
-static uint32_t *fb;  //The framebuffer
-
-#define NULL 0
-
 /**
- * Set screen resolution to 1024x768
- */
-uint32_t* fb_init()
+ * 
+ * CC0-1.0 License
+ * https://github.com/isometimes/rpi4-osdev
+ *  
+ **/
+#include "io.h"
+#include "mb.h"
+#include "terminal.h"
+
+unsigned int width, height, pitch, isrgb;
+unsigned char *fb;
+
+void fb_init()
 {
-    mbox[0] = 35*4;
+    mbox[0] = 35*4; // Length of message in bytes
     mbox[1] = MBOX_REQUEST;
 
-    mbox[2] = 0x48003;  //set phy wh
-    mbox[3] = 8;
-    mbox[4] = 8;
-    mbox[5] = 1024;         //FrameBufferInfo.width
-    mbox[6] = 768;          //FrameBufferInfo.height
+    mbox[2] = MBOX_TAG_SETPHYWH; // Tag identifier
+    mbox[3] = 8; // Value size in bytes
+    mbox[4] = 0;
+    mbox[5] = 1920; // Value(width)
+    mbox[6] = 1080; // Value(height)
 
-    mbox[7] = 0x48004;  //set virt wh
+    mbox[7] = MBOX_TAG_SETVIRTWH;
     mbox[8] = 8;
     mbox[9] = 8;
-    mbox[10] = 1024;        //FrameBufferInfo.virtual_width
-    mbox[11] = 768;         //FrameBufferInfo.virtual_height
+    mbox[10] = 1920;
+    mbox[11] = 1080;
 
-    mbox[12] = 0x48009; //set virt offset
+    mbox[12] = MBOX_TAG_SETVIRTOFF;
     mbox[13] = 8;
     mbox[14] = 8;
-    mbox[15] = 0;           //FrameBufferInfo.x_offset
-    mbox[16] = 0;           //FrameBufferInfo.y.offset
+    mbox[15] = 0; // Value(x)
+    mbox[16] = 0; // Value(y)
 
-    mbox[17] = 0x48005; //set depth
+    mbox[17] = MBOX_TAG_SETDEPTH;
     mbox[18] = 4;
     mbox[19] = 4;
-    mbox[20] = 32;          //FrameBufferInfo.depth
+    mbox[20] = 32; // Bits per pixel
 
-    mbox[21] = 0x48006; //set pixel order
+    mbox[21] = MBOX_TAG_SETPXLORDR;
     mbox[22] = 4;
     mbox[23] = 4;
-    mbox[24] = 1;           //RGB, not BGR preferably
+    mbox[24] = 1; // RGB
 
-    mbox[25] = 0x40001; //get framebuffer, gets alignment on request
+    mbox[25] = MBOX_TAG_GETFB;
     mbox[26] = 8;
     mbox[27] = 8;
-    mbox[28] = 4096;        //FrameBufferInfo.pointer
-    mbox[29] = 0;           //FrameBufferInfo.size
+    mbox[28] = 4096; // FrameBufferInfo.pointer
+    mbox[29] = 0;    // FrameBufferInfo.size
 
-    mbox[30] = 0x40008; //get pitch
+    mbox[30] = MBOX_TAG_GETPITCH;
     mbox[31] = 4;
     mbox[32] = 4;
-    mbox[33] = 0;           //FrameBufferInfo.pitch
+    mbox[33] = 0; // Bytes per line
 
     mbox[34] = MBOX_TAG_LAST;
 
-    if(mbox_call(MBOX_CH_PROP) && mbox[20]==32 && mbox[28]!=0) {
-        mbox[28]&=0x3FFFFFFF;
-        width=mbox[5];
-        height=mbox[6];
-        pitch=mbox[33];
-        fb=(void*)((unsigned long)mbox[28]);
-    } else {
-        //Failed to init screen at 32-bit 1024x768
-        return NULL;
+    // Check call is successful and we have a pointer with depth 32
+    if (mbox_call(MBOX_CH_PROP) && mbox[20] == 32 && mbox[28] != 0) {
+        mbox[28] &= 0x3FFFFFFF; // Convert GPU address to ARM address
+        width = mbox[10];       // Actual physical width
+        height = mbox[11];      // Actual physical height
+        pitch = mbox[33];       // Number of bytes per line
+        isrgb = mbox[24];       // Pixel order
+        fb = (unsigned char *)((long)mbox[28]);
     }
-
-    return fb;
 }
+
+void drawPixel(int x, int y, unsigned int colour)
+{
+    int offs = (y * pitch) + (x * 4);
+    *((unsigned int*)(fb + offs)) = colour;
+}
+
+void drawLine(int x1, int y1, int x2, int y2, unsigned int colour)  
+{  
+    int dx, dy, p, x, y;
+
+    dx = x2-x1;
+    dy = y2-y1;
+    x = x1;
+    y = y1;
+    p = 2*dy-dx;
+
+    while (x<x2) {
+       if (p >= 0) {
+          drawPixel(x,y,colour);
+          y++;
+          p = p+2*dy-2*dx;
+       } else {
+          drawPixel(x,y,colour);
+          p = p+2*dy;
+       }
+       x++;
+    }
+}
+

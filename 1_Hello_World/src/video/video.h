@@ -19,45 +19,18 @@
 *
 **/
 
-#ifndef HAL_H
-#define HAL_H
+#ifndef VIDEO_H
+#define VIDEO_H
 
-#include <stdbool.h>
 #include <stdint.h>
-
-typedef uint32_t VideoColor;
-
-typedef struct{
-  int32_t x;
-  int32_t y;
-}VideoXY;
-
-typedef struct{
-  VideoXY init;
-  VideoXY end;
-}VideoLine;
-
-#define VIDEO_MAX_X     SYSTEM_SCREEN_WIDTH      //Pixels per line
-#define VIDEO_MAX_Y     SYSTEM_SCREEN_LENGTH     //Num of lines
-
-#define VIDEO_CHARACTER_WIDTH              4   //Unit Character dimensions
-#define VIDEO_CHARACTER_HEIGHT             6   //(It's unit, because they all get
-#define VIDEO_CHARACTER_HORIZONTAL_SPACE   3   // scaled by "size" when printing larger characters )
-#define VIDEO_CHARACTER_VERTICAL_SPACE     5
-#define VIDEO_CHARACTER_SPACE_BEFORE_END   2*VIDEO_CHARACTER_HEIGHT + VIDEO_CHARACTER_VERTICAL_SPACE
+#include <stdbool.h>
 
 #define VIDEO_COLOR_BLACK   0x00000000
 #define VIDEO_COLOR_WHITE   0xFFFFFFFF
 #define VIDEO_COLOR_GREEN 	0x0000FF00
-#define VIDEO_COLOR_BLUE    0x00FF0000
-#define VIDEO_COLOR_RED     0x000000FF
+#define VIDEO_COLOR_RED     0x00FF0000
+#define VIDEO_COLOR_BLUE    0x000000FF
 
 uint32_t video_init( void );
-void video_put_pixel( VideoXY*, VideoColor );
-void video_clear( void );
-void video_line( VideoXY*, VideoXY*, VideoColor );
-void video_putc_x_y( uint32_t x, uint32_t y, uint8_t c, uint32_t size, VideoColor color );
-void video_putc( uint8_t c, uint32_t size, VideoColor color  );
-void video_puts( uint8_t*, uint32_t, VideoColor );
 
 #endif
