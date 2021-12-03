@@ -26,6 +26,10 @@
  *  
  **/
 
+#ifndef FB_H
+#define FB_H
+
 void fb_init();
-void drawPixel(int x, int y, unsigned int colour);
-void drawLine(int x1, int y1, int x2, int y2, unsigned int colour);
+void fb_draw_pixel_raw(int raw_pos, unsigned int colour);
+
+#endif

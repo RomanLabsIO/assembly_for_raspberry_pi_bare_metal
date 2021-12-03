@@ -25,12 +25,17 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define VIDEO_COLOR_BLACK   0x00000000
-#define VIDEO_COLOR_WHITE   0xFFFFFFFF
-#define VIDEO_COLOR_GREEN 	0x0000FF00
-#define VIDEO_COLOR_RED     0x00FF0000
-#define VIDEO_COLOR_BLUE    0x000000FF
+typedef uint32_t VideoColour;
+
+enum VideoColour{
+    VideoColourBlack = 0x00000000,
+    VideoColourWhite = 0xFFFFFFFF,
+    VideoColourGreen = 0x0000FF00,
+    VideoColourRed   = 0x00FF0000,
+    VideoColourBlue  = 0x000000FF
+};
 
 uint32_t video_init( void );
+void video_put_pixel_linear( uint32_t linear_pos, VideoColour colour );
 
 #endif

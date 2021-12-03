@@ -22,10 +22,12 @@
 #include "video.h"
 #include "fb.h"
 
-/*
-*  Video Init
-*/
 uint32_t video_init( void ){
     fb_init();
-    //fonts_init();
+}
+
+void video_put_pixel_linear( uint32_t linear_pos, VideoColour colour ){
+    //prevent unaligned mem accesses
+    if( linear_pos % 4 == 0 )
+        fb_draw_pixel_raw(linear_pos, colour);
 }

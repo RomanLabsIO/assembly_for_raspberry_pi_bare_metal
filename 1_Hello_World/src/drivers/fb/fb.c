@@ -25,6 +25,7 @@
  * https://github.com/isometimes/rpi4-osdev
  *  
  **/
+#include "fb.h"
 #include "io.h"
 #include "mb.h"
 
@@ -88,32 +89,8 @@ void fb_init()
     }
 }
 
-void drawPixel(int x, int y, unsigned int colour)
+void fb_draw_pixel_raw(int raw_pos, unsigned int colour)
 {
-    int offs = (y * pitch) + (x * 4);
-    *((unsigned int*)(fb + offs)) = colour;
+    //int offs = (y * pitch) + (x * 4);
+    *((unsigned int*)(fb + raw_pos)) = colour;
 }
-
-void drawLine(int x1, int y1, int x2, int y2, unsigned int colour)  
-{  
-    int dx, dy, p, x, y;
-
-    dx = x2-x1;
-    dy = y2-y1;
-    x = x1;
-    y = y1;
-    p = 2*dy-dx;
-
-    while (x<x2) {
-       if (p >= 0) {
-          drawPixel(x,y,colour);
-          y++;
-          p = p+2*dy-2*dx;
-       } else {
-          drawPixel(x,y,colour);
-          p = p+2*dy;
-       }
-       x++;
-    }
-}
-

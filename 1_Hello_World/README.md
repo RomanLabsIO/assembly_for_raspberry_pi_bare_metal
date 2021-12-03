@@ -1,6 +1,6 @@
 ### Lab 1 -  Hello World
 
-**NOTE: Don't worry too much about all the additional code (uart.c, uart.h, main.c, gpio.h, etc). These are used so we can print to the screen. Everything will be covered later in detail**
+**NOTE: Don't worry too much about all the additional code (video.c, fb.c, etc). These are used so we can put pixels on the screen.**
 
 #### Objectives 
 
@@ -13,13 +13,13 @@ After completion of this lab, the student will be able to:
 
 #### Instructions 
 
-1. Currently `hello_world.s` displays `hey` on the screen (there's no lowercase letters):
+1. Currently `main.s` puts a single pixels on the screen:
 
-<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/qemu_output.png" width="620"/>
+<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/output.png" width="620"/>
 
-change it so it displays `hello`. 
+change it so it makes a line made of three pixels.
 
-2. Generate `output/kernel8.img` and it on both QEMU and the PI. 
+2. Generate `output/kernel8.img` and run it on the PI. 
 
 3. In your favourite browser look for answers to the following questions:
     - What is a Makefile?
@@ -29,16 +29,11 @@ change it so it displays `hello`.
 ### Resources on the WEB
 - [What is a Makefile?](http://www.sis.pitt.edu/mbsclass/tutorial/advanced/makefile/whatis.htm)
 - [Makefile origin](https://en.wikipedia.org/wiki/Make_(software)#Origin)
-- [What are .S files?](https://stackoverflow.com/questions/10285410/what-are-s-files)
+- [What are .s files?](https://stackoverflow.com/questions/10285410/what-are-s-files)
 
 #### Build Binary
 ```
 make
-```
-
-#### Run lab in QEMU
-```
-./run_on_qemu.sh
 ```
 
 #### Transfer kernel8.img to sd card 
@@ -51,13 +46,7 @@ Set SDCARD_DRIVE to match your sd card drive letter (e.g. d,f,h, etc):
 SDCARD_DRIVE=f ./kernel8_to_sdcard_wsl.sh
 ```
 ##### (Linux/MAC)
-Replace kernel8.img in the boot drive of the SD Card. See kernel8_to_sdcard_wsl.sh for reference.
-
-
-
-#### QEMU solution output
-<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/qemu_solution.png" width="620"/>
-
+Replace kernel8.img in the boot drive of the SD Card. See kernel8_to_sdcard_wsl.sh for reference if you wish to write a script
 
 #### Raspberry PI solution Output
 missing
