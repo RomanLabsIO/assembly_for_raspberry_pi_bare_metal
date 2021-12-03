@@ -2,7 +2,7 @@
 
 **NOTE: Don't worry too much about all the additional code (video.c, fb.c, etc). These are used so we can put pixels on the screen.**
 
-#### Objectives 
+### Objectives 
 
 After completion of this lab, the student will be able to:
 
@@ -11,11 +11,11 @@ After completion of this lab, the student will be able to:
 3. Test the binary produced on the PI
 4. Identify an ARM assembly file when seeing one
 
-#### Instructions 
+### Instructions 
 
-1. Currently `main.s` puts a single pixels on the screen:
+1. Currently `main.s` puts a single pixel on the screen:
 
-<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/output.png" width="620"/>
+<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/output.png" width="560"/>
 
 change it so it makes a line made of three pixels.
 
@@ -31,22 +31,19 @@ change it so it makes a line made of three pixels.
 - [Makefile origin](https://en.wikipedia.org/wiki/Make_(software)#Origin)
 - [What are .s files?](https://stackoverflow.com/questions/10285410/what-are-s-files)
 
-#### Build Binary
+### Build Binary
 ```
 make
 ```
 
-#### Transfer kernel8.img to sd card 
+### Transfer kernel8.img to sd card 
 
 **NOTE: Make sure you remove kernel7.img, kernel7l.img, and kernel.img from the sdcard**
 
-##### (Windows Subsystem For Linux)
+#### (Windows Subsystem For Linux)
 Set SDCARD_DRIVE to match your sd card drive letter (e.g. d,f,h, etc):
 ```
 SDCARD_DRIVE=f ./kernel8_to_sdcard_wsl.sh
 ```
-##### (Linux/MAC)
+#### (Linux/MAC)
 Replace kernel8.img in the boot drive of the SD Card. See kernel8_to_sdcard_wsl.sh for reference if you wish to write a script
-
-#### Raspberry PI solution Output
-missing
