@@ -1,4 +1,4 @@
-### Lab 1 -  Hello World
+## Lab 1 -  Hello World
 
 **NOTE: Don't worry too much about all the additional code (video.c, fb.c, etc). These are used so we can put pixels on the screen.**
 
@@ -38,12 +38,10 @@ make
 
 ### Transfer kernel8.img to sd card 
 
-**NOTE: Make sure you remove kernel7.img, kernel7l.img, and kernel.img from the sdcard**
-
-#### (Windows Subsystem For Linux)
+##### Windows Subsystem For Linux
 Set SDCARD_DRIVE to match your sd card drive letter (e.g. d,f,h, etc):
 ```
 SDCARD_DRIVE=f ./kernel8_to_sdcard_wsl.sh
 ```
-#### (Linux/MAC)
+##### Linux/MAC
 Replace kernel8.img in the boot drive of the SD Card. See kernel8_to_sdcard_wsl.sh for reference if you wish to write a script
