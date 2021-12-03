@@ -15,7 +15,7 @@ After completion of this lab, the student will be able to:
 
 1. Currently `main.s` puts a single pixel on the screen:
 
-<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/output.png" width="560"/>
+<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/output.png" width="480"/>
 
 change it so it makes a line made of three pixels.
 
@@ -39,9 +39,9 @@ make
 ### Transfer kernel8.img to sd card 
 
 ##### Windows Subsystem For Linux
-Set SDCARD_DRIVE to match your sd card drive letter (e.g. d,f,h, etc):
+Set `SDCARD_DRIVE` to match your sd card drive letter (e.g. d,f,h, etc):
 ```
 SDCARD_DRIVE=f ./kernel8_to_sdcard_wsl.sh
 ```
 ##### Linux/MAC
-Replace kernel8.img in the boot drive of the SD Card. See kernel8_to_sdcard_wsl.sh for reference if you wish to write a script
+Replace kernel8.img in the boot drive of the SD Card. See `kernel8_to_sdcard_wsl.sh` for reference if you wish to write a script
