@@ -15,7 +15,7 @@ After completion of this lab, the student will be able to:
 
 1. Currently `main.s` puts a single pixel on the screen:
 
-<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/1_Hello_World/images/output.png" width="480"/>
+<img src="https://github.com/RomanLabsIO/assembly_for_raspberry_pi_bare_metal/blob/master/raspberry_pi4/1_Hello_World/images/output.png" width="480"/>
 
 change it so it makes a line made of three pixels.
 
