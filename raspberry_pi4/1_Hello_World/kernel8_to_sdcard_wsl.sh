@@ -12,7 +12,11 @@ echo "Mounting $SDCARD_DRIVE drive"
 sudo mkdir -p /mnt/$SDCARD_DRIVE
 sudo mount -t drvfs $SDCARD_DRIVE: /mnt/$SDCARD_DRIVE
 
-PREV_KERNEL_SIZE=$(stat --printf="%s" /mnt/$SDCARD_DRIVE/kernel8.img)
+if test -f /mnt/$SDCARD_DRIVE/kernel8.img; then
+    PREV_KERNEL_SIZE=$(stat --printf="%s" /mnt/$SDCARD_DRIVE/kernel8.img)
+else
+    PREV_KERNEL_SIZE=0
+fi
 
 echo "Replacing kernel"
 cp $KERNEL_DIR/kernel8.img /mnt/$SDCARD_DRIVE
