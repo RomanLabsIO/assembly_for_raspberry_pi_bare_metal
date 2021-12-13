@@ -6,8 +6,7 @@
 
 After completion of this lab, the student will be able to:
 
-1. Run a makefile to compile bare metal code to produce a binary for the Raspberry Pi
-2. Test the binary produced on QEMU
+1. Run a makefile to produce an executable binary for the Raspberry Pi
 3. Test the binary produced on the PI
 4. Identify an ARM assembly file when seeing one
 
