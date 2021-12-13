@@ -19,39 +19,17 @@
 *
 **/
 
-.section ".boot"
+.section ".text"
 .align 2
 
-.global _boot_entry_point
-_boot_entry_point:
-    // Halt cores from 1 to 3
-    // Only core 0 runs
-    //
-    //  MPIDR_EL1 (Multiprocessor Affinity Register)
-    //    - It's a 64-bit register.
-    //    - It provides "provides an additional PE [processing element] identification mechanism"
-    //
-    //
-    mrs   x0, mpidr_el1
-    and   x0, x0, 3
-    cbnz  x0, halt            //Only core 0 will make it thru
+.equ VideoColourGreen, 0x0000FF00
 
-    ldr   x0, =__stack_end    //Init stack
-    mov   sp, x0
+.global main
+main:     
+    ldr x5, =video_init         //video_init()
+    blr x5
 
-    ldr   x4, =__bss_start     // Fill BSS with Zeroes
-	ldr   x9, =__bss_end
-	mov   w5, 0
-bss_next_word:
-	cmp   x4, x9
-	bge   bss_end
-    str   w5, [x4]
-    add   x4, x4, 4
-	b bss_next_word
-bss_end:
-
-    bl      main                 //Jump to main
-
-halt:
-    wfe                          //Low power mode
-    b halt
+    mov x0, 0                   //video_put_pixel_linear(0, VideoColourGreen)
+    ldr x1, =VideoColourGreen 
+    ldr x5, =video_put_pixel_linear
+    blr x5
